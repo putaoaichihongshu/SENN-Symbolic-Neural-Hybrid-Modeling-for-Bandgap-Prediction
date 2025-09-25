@@ -11,13 +11,16 @@ In addition, we implement **SENN (Symbolically Encoded Neural Network)** and oth
 <pre>
 .
 ├── data/                # Dataset: perovskite compositions and bandgap values
+│   ├── data.csv         # Dataset for EQL
+│   ├── train.csv        # Training data for SENN and other models
+│   └── text.csv         # Testing data for SENN and other models
 ├── EQL.py               # Training script for EQL network (produces symbolic encoders)
 ├── models/              # SENN training code and other ML baseline models
 │   ├── senn.py
 │   ├── rf.py            # Random Forest
 │   ├── svr.py           # Support Vector Regression
+│   ├── linear.py        # Linear Regression
 │   └── gbdt.py          # Gradient Boosting
-├── requirements.txt     # Environment dependencies
 └── README.md
 </pre>
 
@@ -28,10 +31,8 @@ First, create a virtual environment and install dependencies:
 ```bash
 python -m venv .venv
 source .venv/bin/activate    # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
 
-
-Key dependencies:
+Pip Key dependencies:
 
 numpy, pandas
 
