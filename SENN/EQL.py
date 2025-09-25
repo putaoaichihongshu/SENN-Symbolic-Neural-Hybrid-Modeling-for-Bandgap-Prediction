@@ -2,6 +2,8 @@ from DySymNet import SymbolicRegression
 from DySymNet.scripts.params import Params
 from DySymNet.scripts.functions import *
 import numpy as np
+import panda as pd
+from pathlib import Path
 
 config = Params()
 
@@ -16,7 +18,19 @@ config.num_func_layer = num_func_layer
 config.reg_weight = reg_weight
 
 
-data_path = 'data/data_withoutA.csv'
+raw_path = Path("data/data.csv")
+processed_path = Path("data/data_processed.csv")
+
+df = pd.read_csv(raw_path)              
+for col in ["Cs", "I"]:
+    if col in df.columns:
+        df = df.drop(columns=[col])
+
+processed_path.parent.mkdir(parents=True, exist_ok=True)
+df.to_csv(processed_path, index=False, header=False)
+
+
+data_path = str(processed_path)
 SR = SymbolicRegression.SymboliRegression(config=config, func_name='Perovskite', data_path=data_path)
 eq, R2, error, relative_error = SR.solve_environment()
 
