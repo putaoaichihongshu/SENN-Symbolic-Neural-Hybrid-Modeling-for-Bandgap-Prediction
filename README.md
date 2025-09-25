@@ -1,0 +1,1 @@
+# SENN-Symbolic-Neural-Hybrid-Modeling-for-Bandgap-Prediction
